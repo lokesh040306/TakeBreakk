@@ -12,6 +12,8 @@
  */
 import { useState } from "react";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 const useFileUpload = ({ socket, roomId, username, setMessages, fileInputRef }) => {
   const [uploading, setUploading] = useState(false);
 
@@ -58,7 +60,7 @@ const useFileUpload = ({ socket, roomId, username, setMessages, fileInputRef }) 
       formData.append("roomId", roomId);
       formData.append("username", username);
 
-      const res = await fetch(`/api/uploads/file`, {
+      const res = await fetch(`${API_BASE_URL}/api/uploads/file`, {
         method: "POST",
         body: formData,
       });
